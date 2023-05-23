@@ -1,9 +1,4 @@
-﻿using Business.Repository.IRepository;
-using DataAccess.Context;
-using DataAccess.Entities;
-using Microsoft.EntityFrameworkCore;
-
-namespace Business.Repository
+﻿namespace Business.Repository
 {
     public class HotelRoomRepository : IHotelRoomRepository
     {
@@ -80,12 +75,23 @@ namespace Business.Repository
             return 0;
         }
 
-        public async Task<HotelRoomDTO> IsRoomUnique(string name)
+        public async Task<HotelRoomDTO> IsRoomUnique(string name, int roomId)
         {
-            var hotelRoom = _mapper.Map<HotelRoom, HotelRoomDTO>(
-                await _context.HotelRooms.SingleOrDefaultAsync(h => h.Name == name));
+            if (roomId == 0)
+            {
+                HotelRoomDTO hotelRoom = _mapper.Map<HotelRoom, HotelRoomDTO>(
+                    await _context.HotelRooms.FirstOrDefaultAsync(x => x.Name.ToLower() == name.ToLower()));
 
-            return hotelRoom;
+                return hotelRoom;
+            }
+            else
+            {
+                HotelRoomDTO hotelRoom = _mapper.Map<HotelRoom, HotelRoomDTO>(
+                    await _context.HotelRooms.FirstOrDefaultAsync(x => x.Name.ToLower() == name.ToLower()
+                    && x.Id != roomId));
+
+                return hotelRoom;
+            }
         }
 
         #endregion

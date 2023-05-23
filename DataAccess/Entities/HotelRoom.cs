@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace DataAccess.Entities
+﻿namespace DataAccess.Entities
 {
     public class HotelRoom
     {
