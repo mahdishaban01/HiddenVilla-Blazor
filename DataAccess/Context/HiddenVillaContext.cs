@@ -14,6 +14,7 @@ namespace DataAccess.Context
         #region Entities
 
         public DbSet<HotelRoom> HotelRooms { get; set; }
+        public DbSet<HotelRoomImage> HotelRoomImages { get; set; }
 
         #endregion
     }

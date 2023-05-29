@@ -20,5 +20,11 @@
         public DateTime UpdatedDate { get; set; }
 
         #endregion
+
+        #region Relations
+
+        public virtual ICollection<HotelRoomImage> HotelRoomImages { get; set; }
+
+        #endregion
     }
 }

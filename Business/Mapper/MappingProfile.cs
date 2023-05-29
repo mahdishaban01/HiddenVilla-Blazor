@@ -6,6 +6,8 @@
         {
             CreateMap<HotelRoomDTO, HotelRoom>();
             CreateMap<HotelRoom, HotelRoomDTO>();
+
+            CreateMap<HotelRoomImage, HotelRoomDTO>().ReverseMap();
         }
     }
 }
